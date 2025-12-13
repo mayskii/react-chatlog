@@ -7,9 +7,19 @@ import './App.css';
 
 
 const App = () => {
+  const [localColor, setLocalColor] = useState('#000000ff');
+  const [remoteColor, setRemoteColor] = useState('#000000ff');
+  const [likedMessages, setLikedMessages] = useState([]);
 
-  const [localColor, setLocalColor] = useState('#ffffe0');
-  const [remoteColor, setRemoteColor] = useState('#ffffe0');
+  const toggleLikes = (id) => {
+    setLikedMessages((prev) => {
+      if (prev.includes(id)){
+        return prev.filter((messageId) => messageId !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
 
   return (
     <div id="App">
@@ -19,6 +29,7 @@ const App = () => {
           <span className='local-name'>Vladimir</span> and{' '}
           <span className='remote-name'>Estragon</span>
         </h1>
+        <p className="liked-count">{likedMessages.length} ❤️s</p>
         <div className='color-controls'>
           <div className='color-group' style={{ '--text-color': localColor }}>
             <span>Vladimir</span>
@@ -36,6 +47,8 @@ const App = () => {
           entries={messages}
           localColor={localColor}
           remoteColor={remoteColor}
+          likedMessages={likedMessages}
+          toggleLikes={toggleLikes}
         />
       </main>
     </div>

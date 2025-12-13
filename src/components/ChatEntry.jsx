@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types';
 import TimeStamp from './TimeStamp';
-import { useState } from 'react';
 import './ChatEntry.css';
 
-const ChatEntry = ({sender, body, timeStamp, isLocal, localColor, remoteColor }) => {
-
-  const [liked, setLiked] = useState(false);
-
-  const handleLikedClick = () => {
-    setLiked(!liked);
-  }
+const ChatEntry = ({sender, body, timeStamp, isLocal, localColor, remoteColor, liked, toggleLikes, id }) => {
 
   return (
     <article className={`chat-entry ${isLocal ? 'local' : 'remote'}`}>
@@ -19,7 +12,7 @@ const ChatEntry = ({sender, body, timeStamp, isLocal, localColor, remoteColor })
         <p className="entry-time">
           <TimeStamp time = {timeStamp}/>
         </p>
-        <button className="like" onClick={handleLikedClick}>{liked ? '❤️' : '🤍'}</button>
+        <button className="like" onClick={() => toggleLikes(id)}>{liked ? '❤️' : '🤍'}</button>
       </section>
     </article>
   );
@@ -32,6 +25,9 @@ ChatEntry.propTypes = {
   isLocal: PropTypes.bool.isRequired,
   localColor: PropTypes.string.isRequired,
   remoteColor: PropTypes.string.isRequired,
+  liked: PropTypes.bool.isRequired,
+  toggleLikes: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ChatEntry;
