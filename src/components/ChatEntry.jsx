@@ -22,11 +22,11 @@ ChatEntry.propTypes = {
   sender: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   timeStamp: PropTypes.string.isRequired,
-  isLocal: PropTypes.bool.isRequired,
-  localColor: PropTypes.string.isRequired,
-  remoteColor: PropTypes.string.isRequired,
+  isLocal: PropTypes.bool,
+  localColor: PropTypes.string,
+  remoteColor: PropTypes.string,
   liked: PropTypes.bool.isRequired,
-  toggleLikes: PropTypes.func.isRequired,
+  toggleLikes: PropTypes.func,
   id: PropTypes.number.isRequired,
 };
 
